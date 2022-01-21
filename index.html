@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- look part -->
+<header>
+  <div class="container">
+    <p class="name">Random Crypto Generator</p>
+
+    <nav>
+      <ul>
+        <li><a class="link" href="https://stackoverflow.com/questions/15175312/increase-font-size-of-hyperlink-text-html">Home</a></li>
+      </ul>
+    </nav>
+
+
+  </div>
+
+
+</header>
+
+<div class="background">
+  <p class="output" id="demo">Click...</p>
+  <button class="MyButton" onclick="getData()">
+    Choose crypto to make milions on
+  </button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Fuctional part -->
+
+
+
+  
+    <script type="text/javascript">
+    function myFunction(data){
+    console.log(typeof data["symbols"]);
+    console.log(data["symbols"]);
+
+    const list = [];
+    let fLen = data["symbols"].length;
+
+    for (let i = 0; i < fLen; i++) {
+      if (list.includes(data["symbols"][i]["baseAsset"]) || data["symbols"][i]["status"] == "BREAK"){
+      }
+      else{
+        list.push(data["symbols"][i]["baseAsset"]);
+      }
+
+
+    }
+    let text = list[Math.floor(Math.random()*list.length)];
+    document.getElementById("demo").innerHTML = text;
+    }
+    function getData(){
+    fetch('https://api.binance.com/api/v3/exchangeInfo')
+    .then(response => response.json())
+    .then(data => myFunction(data))  
+    }
+    </script>
+  </div>
+</body>
+</html>
+
